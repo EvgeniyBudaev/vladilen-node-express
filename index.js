@@ -1,14 +1,23 @@
 const express = require('express');
-const path = require('path');
+const exphbs = require('express-handlebars');
 
 const app = express();
 
+const hbs = exphbs.create({
+  defaultLayout: 'main',
+  extname: 'hbs'
+});
+
+app.engine('hbs', hbs.engine); // регистрируем в express движок hbs
+app.set('view engine', 'hbs'); // используем движок
+app.set('views', 'templates'); // отслеживать папку с шаблонами
+
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'templates', 'index.html'));
+  res.render('index');
 });
 
 app.get('/about', (req, res) => {
-  res.sendFile(path.join(__dirname, 'templates', 'about.html'));
+  res.render('about');
 });
 
 const PORT = process.env.PORT || 3000;
