@@ -3,6 +3,7 @@ const exphbs = require('express-handlebars');
 const homeRoutes = require('./routes/home');
 const coursesRoutes = require('./routes/courses');
 const addRoutes = require('./routes/add');
+const cartRoutes = require('./routes/cart');
 
 const app = express();
 
@@ -18,9 +19,11 @@ app.set('views', 'templates'); // отслеживать папку с шабл�
 app.use(express.static('public')); // подключаем статику
 app.use(express.urlencoded({extended: true}))
 
-app.use('/', homeRoutes); // регистрация роутов
+// регистрация роутовов
+app.use('/', homeRoutes);
 app.use('/courses', coursesRoutes);
 app.use('/add', addRoutes);
+app.use('/cart', cartRoutes);
 
 const PORT = process.env.PORT || 3000;
 
