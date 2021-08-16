@@ -36,6 +36,31 @@ class Cart {
     });
   }
 
+  static async remove(id) {
+    const cart = await Cart.fetch();
+    const idx = cart.courses.findIndex(c => c.id === id);
+    const course = cart.courses[idx];
+    if (course.count === 1) {
+      // удалить
+      cart.courses = cart.courses.filter(c => c.id !== id);
+    } else {
+      // изменить количество
+      cart.courses[idx].count--;
+    }
+
+    cart.price -= course.price;
+
+    return new Promise((resolve, reject) => {
+      fs.writeFile(p, JSON.stringify(cart), error => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(cart);
+        }
+      })
+    });
+  }
+
   static async fetch() {
     return new Promise((resolve, reject) => {
       fs.readFile(p, 'utf-8', (error, content) => {
