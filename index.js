@@ -31,7 +31,7 @@ const PORT = process.env.PORT || 3000;
 
 async function start() {
   try {
-    const url = `mongodb+srv://admin:admin@cluster0.q3bbz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+    const url = `mongodb+srv://admin:admin@cluster0.q3bbz.mongodb.net/shop`;
     await mongoose.connect(url, {useUnifiedTopology: true});
 
     app.listen(PORT, () => {
