@@ -26,6 +26,8 @@ app.use('/courses', coursesRoutes);
 app.use('/add', addRoutes);
 app.use('/cart', cartRoutes);
 
+const url = `mongodb+srv://admin:admin@cluster0.q3bbz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
+
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
