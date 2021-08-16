@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const mongoose = require('mongoose');
 const exphbs = require('express-handlebars');
 const homeRoutes = require('./routes/home');
 const coursesRoutes = require('./routes/courses');
@@ -20,16 +21,26 @@ app.set('views', 'templates'); // отслеживать папку с шабл�
 app.use(express.static(path.join(__dirname, 'public'))); // подключаем статику
 app.use(express.urlencoded({extended: true}))
 
-// регистрация роутовов
+// регистрация роутов
 app.use('/', homeRoutes);
 app.use('/courses', coursesRoutes);
 app.use('/add', addRoutes);
 app.use('/cart', cartRoutes);
 
-const url = `mongodb+srv://admin:admin@cluster0.q3bbz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
-
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`)
-});
+async function start() {
+  try {
+    const url = `mongodb+srv://admin:admin@cluster0.q3bbz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+    await mongoose.connect(url, {useUnifiedTopology: true});
+
+    app.listen(PORT, () => {
+      console.log(`Server is running on port ${PORT}`)
+    });
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+start();
+
