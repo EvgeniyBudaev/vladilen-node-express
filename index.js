@@ -16,6 +16,8 @@ app.set('view engine', 'hbs'); // используем движок
 app.set('views', 'templates'); // отслеживать папку с шаблонами
 
 app.use(express.static('public')); // подключаем статику
+app.use(express.urlencoded({extended: true}))
+
 app.use('/', homeRoutes); // регистрация роутов
 app.use('/courses', coursesRoutes);
 app.use('/add', addRoutes);
