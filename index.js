@@ -12,6 +12,8 @@ app.engine('hbs', hbs.engine); // регистрируем в express движо
 app.set('view engine', 'hbs'); // используем движок
 app.set('views', 'templates'); // отслеживать папку с шаблонами
 
+app.use(express.static('public'));
+
 app.get('/', (req, res) => {
   res.render('index');
 });
