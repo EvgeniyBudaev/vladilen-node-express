@@ -6,7 +6,7 @@ router.get('/', (req, res) => {
   res.render('add', {
     title: 'Добавить курс',
     isAdd: true
-  });
+  })
 });
 
 router.post('/', async (req, res) => {
@@ -14,13 +14,13 @@ router.post('/', async (req, res) => {
     title: req.body.title,
     price: req.body.price,
     img: req.body.img
-  });
+  })
 
   try {
-    await course.save();
-    res.redirect('/courses'); // редирект
-  } catch (err) {
-    console.log(err)
+    await course.save()
+    res.redirect('/courses')
+  } catch (e) {
+    console.log(e)
   }
 });
 
