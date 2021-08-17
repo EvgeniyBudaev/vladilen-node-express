@@ -1,20 +1,20 @@
 .nav-wrapper {
-  padding: 0 32px;
+  padding: 0 2rem;
 }
 
 .price {
-  font-size: 24px;
+  font-size: 2rem;
 }
 
 .course {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
 }
 
 .course h1 {
-  margin-bottom: 32px;
+  margin-bottom: 2rem;
 }
 
 .course img {
@@ -23,7 +23,7 @@
 }
 
 .course .price.big {
-  font-size: 40px;
+  font-size: 2.5rem;
 }
 
 .card-action.actions {
@@ -33,5 +33,5 @@
 }
 
 .course-form {
-  margin-bottom: 32px;
+  margin-bottom: 2rem;
 }
